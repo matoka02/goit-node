@@ -1,24 +1,28 @@
 // CommonJS
-// const nodemon = require("nodemon");
+// импорт из npm-пакета
+const nodemon = require("nodemon");
 
-const obj = require("./users");
+// импорт из файла 
+// const users = require("./users");
+// console.log(users);
+
+// // переназвать
+// const obj = require("./users");
 // console.log(obj);
 
-const {admins} = require("./users");
+// деструктуризация
+const obj = require("./users");
+const {admins} = require('./users');
 // console.log(admins);
 
-// const {getCurrentMonth} = require("./date");
+// // импорт из папки date/index.js
+// const {getCurrentMonth} = require('./date');
 // const currentMonth = getCurrentMonth();
 // console.log(`Now ${currentMonth} month`);
 
-const currentMonth = require("./date").getCurrentMonth();
-console.log(`Now ${currentMonth} month`);
-
-
-
-
-
-
+// рефакторинг
+const currentMonth = require('./date').getCurrentMonth();
+// console.log(`Now ${currentMonth} month`);
 
 
 
