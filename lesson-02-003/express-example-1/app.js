@@ -7,6 +7,7 @@ const app = express();
 // // запуск сервера - не указывать 3000, если фронт на нем
 // app.listen(4000, () => console.log("Server running"));
 
+// отправка html
 app.get('/', (request, responce)=>{
   responce.send(`<h2>Home page</h2>`)
 });
