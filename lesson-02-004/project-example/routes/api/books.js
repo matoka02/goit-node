@@ -80,8 +80,41 @@ router.post('/', async (req, resp, next) => {
   } catch (error) {
     next(error)
   }
-})
+});
 
+router.put('/:id', async (req, resp, next) => {
+  try {
+    const { error } = addSchema.validate(req.body);
+    if (error) {
+      throw HttpError(400, error.message)
+    };  
+    const { id } = req.params;
+    const result = await books.updateById(id, req.body);
+    if (!result) {
+      throw HttpError(404, 'Not found')
+    };
+    resp.json(result)
+  } catch (error) {
+    next(error)
+  }
+});
+
+router.delete('/:id', async (req, resp, next) => {
+  try {
+    const { id } = req.params;
+    const result = await books.deleteById(id);
+    // console.log(result);
+    if (!result) {
+      throw HttpError(404, 'Not found')
+    };
+    resp.json({
+      message: 'Delete successfully'
+    });
+    // resp.status(204).send();      // не придет тело ответа
+  } catch (error) {
+    next(error)
+  }
+});
 
 
 
