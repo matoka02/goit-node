@@ -1,14 +1,14 @@
-const Joi = require("joi");
-
 const books = require("../models/books");
 
 // const { HttpError } = require('../helpers');
 const { HttpError, ctrlWrapper } = require("../helpers");
 
-const addSchema = Joi.object({
-  title: Joi.string().required(),
-  author: Joi.string().required(),
-});
+// рефакторинг, вынесено в /shemas/books.js
+// const Joi = require("joi");
+// const addSchema = Joi.object({
+//   title: Joi.string().required(),
+//   author: Joi.string().required(),
+// });
 
 // const getAll = async (req, resp) => {
 //   try {
@@ -98,20 +98,22 @@ const getById = async (req, resp) => {
 };
 
 const add = async (req, resp) => {
-  const { error } = addSchema.validate(req.body);
-  if (error) {
-    throw HttpError(400, error.message);
-  }
+  // // рефакторинг, вынесено в /shemas/books.js
+  // const { error } = addSchema.validate(req.body);
+  // if (error) {
+  //   throw HttpError(400, error.message);
+  // };
   const result = await books.add(req.body);
   resp.status(201).json(result);
 };
 
 const updateById = async (req, resp) => {
-  const { error } = addSchema.validate(req.body);
+  // // рефакторинг, вынесено в /shemas/books.js
+  // const { error } = addSchema.validate(req.body);
 
-  if (error) {
-    throw HttpError(400, error.message);
-  }
+  // if (error) {
+  //   throw HttpError(400, error.message);
+  // };
 
   const { id } = req.params;
   const result = await books.updateById(id, req.body);
