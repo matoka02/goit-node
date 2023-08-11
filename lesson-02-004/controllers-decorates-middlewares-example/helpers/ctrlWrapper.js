@@ -1,8 +1,8 @@
 const ctrlWrapper = (ctrl) => {
   // функция-обертка
-  const func = async (req, res, next) => {
+  const func = async (req, resp, next) => {
     try {
-      await ctrl(req, res, next);
+      await ctrl(req, resp, next);
     } catch (error) {
       next(error);
     }
