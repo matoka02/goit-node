@@ -1,7 +1,7 @@
 const express = require('express');
 
 const ctrl = require('../../controllers/books');
-const { validateBody } = require('../../middleWares');
+const { validateBody } = require('../../middlewares');
 const schemas = require('../../shemas/books');
 
 const router = express.Router();
