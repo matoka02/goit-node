@@ -1,12 +1,12 @@
-const Book = require('../models/book');
+// const Book = require("../models/book");
+const {Book} = require("../models/book");
 
 // const { HttpError, ctrlWrapper } = require("../helpers");
 const { ctrlWrapper } = require("../helpers");
 
-
 const getAll = async (req, res) => {
-    const result = await Book.find();
-    res.json(result);
+  const result = await Book.find();
+  res.json(result);
 };
 
 // const getById = async (req, res) => {
@@ -19,8 +19,8 @@ const getAll = async (req, res) => {
 // };
 
 const add = async (req, res) => {
-    const result = await Book.create(req.body);
-    res.status(201).json(result);
+  const result = await Book.create(req.body);
+  res.status(201).json(result);
 };
 
 // const updateById = async (req, res) => {
@@ -45,9 +45,9 @@ const add = async (req, res) => {
 // };
 
 module.exports = {
-    getAll: ctrlWrapper(getAll),
-    // getById: ctrlWrapper(getById),
-    add: ctrlWrapper(add),
-    // updateById: ctrlWrapper(updateById),
-    // deleteById: ctrlWrapper(deleteById),
-}
+  getAll: ctrlWrapper(getAll),
+  // getById: ctrlWrapper(getById),
+  add: ctrlWrapper(add),
+  // updateById: ctrlWrapper(updateById),
+  // deleteById: ctrlWrapper(deleteById),
+};
