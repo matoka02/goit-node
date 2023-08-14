@@ -1,22 +1,30 @@
 // const Book = require("../models/book");
 const {Book} = require("../models/book");
 
-// const { HttpError, ctrlWrapper } = require("../helpers");
-const { ctrlWrapper } = require("../helpers");
+const { HttpError, ctrlWrapper } = require("../helpers");
+// const { ctrlWrapper } = require("../helpers");
 
 const getAll = async (req, res) => {
-  const result = await Book.find();
+  // вариант полного поиска
+  const result = await Book.find({});
+  // вариант поиска по опред.параметрам
+  // const result = await Book.find({}, 'title author');
+  // вариант поиска без выдачи опред.параметров
+  // const result = await Book.find({}, '-createdAt -updatedAt');
   res.json(result);
 };
 
-// const getById = async (req, res) => {
-//     const { id } = req.params;
-//     const result = await books.getById(id);
-//     if (!result) {
-//         throw HttpError(404, "Not found");
-//     }
-//     res.json(result);
-// };
+const getById = async (req, res) => {
+    const { id } = req.params;
+    // поиск 1 объекта по 1 параметру (не только id)
+    // const result = await Book.findOne({_id: id});
+    // поиск только по id
+    const result = await Book.findById(id);
+    if (!result) {
+        throw HttpError(404, "Not found");
+    }
+    res.json(result);
+};
 
 const add = async (req, res) => {
   const result = await Book.create(req.body);
@@ -46,7 +54,7 @@ const add = async (req, res) => {
 
 module.exports = {
   getAll: ctrlWrapper(getAll),
-  // getById: ctrlWrapper(getById),
+  getById: ctrlWrapper(getById),
   add: ctrlWrapper(add),
   // updateById: ctrlWrapper(updateById),
   // deleteById: ctrlWrapper(deleteById),
