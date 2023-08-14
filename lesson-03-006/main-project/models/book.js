@@ -64,7 +64,7 @@ const addSchema = Joi.object({
 })
 
 // объединение схемы валидации
-const shemas = { addSchema };
+const schemas = { addSchema };
 
 // создание модели (название коллекции только в ед.ч.)
 const Book = model('book', bookSchema);
@@ -73,5 +73,5 @@ const Book = model('book', bookSchema);
 module.exports = {
   Book,
   // addSchema,
-  shemas
+  schemas
 };
