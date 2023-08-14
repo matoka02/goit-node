@@ -59,7 +59,7 @@ const addSchema = Joi.object({
   title: Joi.string().required(),
   author: Joi.string().required(),
   favorite: Joi.boolean(),
-  genre: Joi.string().validate(...genreList).required(),
+  genre: Joi.string().valid(...genreList).required(),
   date: Joi.string().pattern(dateRegeXP).required(),
 })
 
