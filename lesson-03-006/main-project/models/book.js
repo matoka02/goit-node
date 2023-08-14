@@ -61,10 +61,15 @@ const addSchema = Joi.object({
   favorite: Joi.boolean(),
   genre: Joi.string().valid(...genreList).required(),
   date: Joi.string().pattern(dateRegeXP).required(),
+});
+
+// добавление валидации для putch-метода
+const updateFavoriteSchema = Joi.object({
+  favorite: Joi.boolean().required(),
 })
 
 // объединение схемы валидации
-const schemas = { addSchema };
+const schemas = { addSchema, updateFavoriteSchema };
 
 // создание модели (название коллекции только в ед.ч.)
 const Book = model('book', bookSchema);
