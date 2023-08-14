@@ -36,7 +36,7 @@ const updateById = async (req, res) => {
   // 3.1 вернет запись до изменения
   // const result = await Book.findByIdAndUpdate(id, req.body);
   // 3.2 вернет запись после изменения
-  const result = await Book.findByIdAndUpdate(id, req.body, {new: true});
+  const result = await Book.findByIdAndUpdate(id, req.body, { new: true });
   if (!result) {
     throw HttpError(404, "Not found");
   }
@@ -45,24 +45,27 @@ const updateById = async (req, res) => {
 
 const updateFavorite = async (req, res) => {
   const { id } = req.params;
-  const result = await Book.findByIdAndUpdate(id, req.body, {new: true});
+  const result = await Book.findByIdAndUpdate(id, req.body, { new: true });
   if (!result) {
     throw HttpError(404, "Not found");
   }
   res.json(result);
 };
 
-// const deleteById = async (req, res) => {
-//     const { id } = req.params;
-//     const result = await books.deleteById(id);
-//     if (!result) {
-//         throw HttpError(404, "Not found");
-//     }
-//     // res.status(204).send()
-//     res.json({
-//         message: "Delete success"
-//     })
-// };
+const deleteById = async (req, res) => {
+  const { id } = req.params;
+  // 4.1 вариант удаления
+  // const result = await Book.findByIdAndRemove(id);
+  // 4.2 вариант удаления
+  const result = await Book.findByIdAndDelete(id);
+  if (!result) {
+    throw HttpError(404, "Not found");
+  }
+  // res.status(204).send()
+  res.json({
+    message: "Delete success",
+  });
+};
 
 module.exports = {
   getAll: ctrlWrapper(getAll),
@@ -70,5 +73,5 @@ module.exports = {
   add: ctrlWrapper(add),
   updateById: ctrlWrapper(updateById),
   updateFavorite: ctrlWrapper(updateFavorite),
-  // deleteById: ctrlWrapper(deleteById),
+  deleteById: ctrlWrapper(deleteById),
 };
