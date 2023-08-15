@@ -15,6 +15,7 @@ const userSchema = new Schema(
     email: {
       type: String,
       match: emailRegexp,
+      // проверка на уникальность параметра в пределах 1 коллекции
       unique: true,
       required: true,
     },
