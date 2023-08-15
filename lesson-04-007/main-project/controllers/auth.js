@@ -42,7 +42,7 @@ const login = async (req, resp) => {
   const passwordCompare = await bcrypt.compare(password, user.password);
   if (!passwordCompare) {
     throw HttpError(401, 'Email or password invalid')
-  };  
+  };
   // создание токена
   const payload = {
     id: user._id,
