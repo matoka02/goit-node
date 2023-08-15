@@ -2,51 +2,51 @@ const { Book } = require("../models/book");
 
 const { HttpError, ctrlWrapper } = require("../helpers");
 
-const getAll = async (req, res) => {
+const getAll = async (req, resp) => {
   const result = await Book.find({});
-  res.json(result);
+  resp.json(result);
 };
 
-const getById = async (req, res) => {
+const getById = async (req, resp) => {
   const { id } = req.params;
   const result = await Book.findById(id);
   if (!result) {
     throw HttpError(404, "Not found");
   }
-  res.json(result);
+  resp.json(result);
 };
 
-const add = async (req, res) => {
+const add = async (req, resp) => {
   const result = await Book.create(req.body);
-  res.status(201).json(result);
+  resp.status(201).json(result);
 };
 
-const updateById = async (req, res) => {
+const updateById = async (req, resp) => {
   const { id } = req.params;
   const result = await Book.findByIdAndUpdate(id, req.body, { new: true });
   if (!result) {
     throw HttpError(404, "Not found");
   }
-  res.json(result);
+  resp.json(result);
 };
 
-const updateFavorite = async (req, res) => {
+const updateFavorite = async (req, resp) => {
   const { id } = req.params;
   const result = await Book.findByIdAndUpdate(id, req.body, { new: true });
   if (!result) {
     throw HttpError(404, "Not found");
   }
-  res.json(result);
+  resp.json(result);
 };
 
-const deleteById = async (req, res) => {
+const deleteById = async (req, resp) => {
   const { id } = req.params;
   const result = await Book.findByIdAndDelete(id);
   if (!result) {
     throw HttpError(404, "Not found");
   }
-  // res.status(204).send()
-  res.json({
+  // resp.status(204).send()
+  resp.json({
     message: "Delete success",
   });
 };
