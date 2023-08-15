@@ -1,7 +1,7 @@
 const {Schema, model} = require('mongoose');
 const Joi = require("joi");
 
-const {handleMongooseError} = require('../middlewares');
+const {handleMongooseError} = require('../helpers');
 
 // создание схемы - первичная и обязательная проверка, остальные пакеты можно удалить, если ее максимально настроить
 // const bookSchema = new Schema({
