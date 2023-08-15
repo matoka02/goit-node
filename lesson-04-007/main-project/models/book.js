@@ -3,16 +3,9 @@ const Joi = require("joi");
 
 const {handleMongooseError} = require('../helpers');
 
-// создание схемы - первичная и обязательная проверка, остальные пакеты можно удалить, если ее максимально настроить
-// const bookSchema = new Schema({
-//   title: String,
-//   author: String,
-// });
-
 const genreList = ['fantastic', 'love'];
 const dateRegeXP = /^\d{2}-\d{2}-\d{4}$/;
 
-// рефакторинг 
 const bookSchema = new Schema({
   title: {
     type: String,
