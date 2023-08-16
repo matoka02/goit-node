@@ -41,7 +41,8 @@ const login = async (req, resp) => {
   };
 
   const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
-
+  // запись токена в БД
+  await User.findByIdAndUpdate(user._id, {token});
   resp.json({
     token,
   });
@@ -52,8 +53,17 @@ const getCurrent = async (req, resp) => {
   resp.json({ email, name });
 };
 
+const logout = async (req, resp) => {
+  const {_id} = req.user;
+  await User.findByIdAndUpdate(_id, {token: ''});
+  resp.json({
+    message: 'Logout success'
+  })
+};
+
 module.exports = {
   register: ctrlWrapper(register),
   login: ctrlWrapper(login),
   getCurrent: ctrlWrapper(getCurrent),
+  logout: ctrlWrapper(logout),
 };

@@ -17,7 +17,7 @@ const authenticate = async (req, resp, next) => {
     // console.log(id);
     const user = await User.findById(id);
     // проверка для вывода сообщения
-    if (!user) {
+    if (!user || !user.token || user.token !== token) {
       next(HttpError(401))
     };
     // запись пользователя, который отправил запрос
