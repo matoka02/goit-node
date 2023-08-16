@@ -47,7 +47,13 @@ const login = async (req, resp) => {
   });
 };
 
+const getCurrent = async (req, resp) => {
+  const { email, name } = req.user;
+  resp.json({ email, name });
+};
+
 module.exports = {
   register: ctrlWrapper(register),
   login: ctrlWrapper(login),
+  getCurrent: ctrlWrapper(getCurrent),
 };
