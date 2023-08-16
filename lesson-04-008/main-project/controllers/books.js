@@ -3,7 +3,10 @@ const { Book } = require("../models/book");
 const { HttpError, ctrlWrapper } = require("../helpers");
 
 const getAll = async (req, resp) => {
-  const result = await Book.find({}, "-createdAt -updatedAt");
+  // console.log(req.user);
+  const {_id: owner} = req.user;
+  // const result = await Book.find({}, "-createdAt -updatedAt");
+  const result = await Book.find({owner}, "-createdAt -updatedAt");
   resp.json(result);
 };
 
@@ -18,7 +21,9 @@ const getById = async (req, resp) => {
 };
 
 const add = async (req, resp) => {
-  const result = await Book.create(req.body);
+  const {_id: owner} = req.user;
+  // const result = await Book.create(req.body, owner);
+  const result = await Book.create({...req.body, owner});
   resp.status(201).json(result);
 };
 
