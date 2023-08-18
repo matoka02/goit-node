@@ -14,15 +14,11 @@ const authenticate = async (req, resp, next) => {
   };
   try {
     const {id} = jwt.verify(token, SECRET_KEY);
-    // console.log(id);
     const user = await User.findById(id);
-    // проверка для вывода сообщения
     if (!user || !user.token || user.token !== token) {
       next(HttpError(401))
     };
-    // запись пользователя, который отправил запрос
     req.user = user;
-    // команда идти к следующей функции, если все ок
     next();
   } catch (error) {
     next(HttpError(401))

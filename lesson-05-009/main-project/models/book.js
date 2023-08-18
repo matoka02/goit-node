@@ -27,12 +27,10 @@ const bookSchema = new Schema(
     },
     date: {
       type: String,
-      // 16-10-2009
       match: dateRegexp,
       required: true,
     },
     owner: {
-      // специальный тип данных из mongoose
       type: Schema.Types.ObjectId,
       ref: 'user',
       required: true,
