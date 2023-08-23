@@ -6,7 +6,7 @@ const { SENDGRID_API_KEY } = process.env;
 // передача ключа
 sgMail.setApiKey(SENDGRID_API_KEY);
 
-// создание объекта
+// создание объекта настроек письма
 const email = {
   to: "fixig95064@backva.com",
   from: "kurama.sama.024@gmail.com",
