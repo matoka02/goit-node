@@ -2,22 +2,25 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Title:5000</title>
 </head>
 
 <body>
-    <script>
-        const ws = new WebSocket("ws://localhost:5000");
+  <script>
+    // подключение
+    const ws = new WebSocket("ws://localhost:5000");
 
-        ws.onopen = ()=> {
-            // console.log("Success connect")
-        }
+    // метод успешного подключения
+    ws.onopen = () => {
+      // console.log("Success connect")
+    };
 
-        ws.onmessage = e => {
-            console.log(e.data)
-        }
-    </script>
+    // метод чтения сообщений при подключении бекенда
+    ws.onmessage = evt => {
+      console.log(evt.data)
+    };
+  </script>
 </body>
 
 </html>
