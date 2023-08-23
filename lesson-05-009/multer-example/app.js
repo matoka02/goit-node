@@ -12,6 +12,8 @@ app.use(express.json());
 // запрос поиска статичного файлаиз /public
 app.use(express.static("public"));
 
+
+// миддлвар
 const tempDir = path.join(__dirname, "temp");
 
 const multerConfig = multer.diskStorage({
@@ -23,7 +25,6 @@ const multerConfig = multer.diskStorage({
   }
 });
 
-// миддлвар
 const upload = multer({
   storage: multerConfig
 })
