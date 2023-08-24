@@ -15,9 +15,10 @@ const io = new Server(httpServer, {
 // слушатель
 io.on("connection", (socket) => {
   console.log('New frontend connect');
-  // socket.on("chat-message", (message) => {
-    // socket.broadcast.emit("chat-message", message);
-  // });
+  // прием сообщений от socket.emit
+  socket.on("chat-message", (message) => {
+    socket.broadcast.emit("chat-message", message);
+  });
 });
 
 httpServer.listen(4001);
